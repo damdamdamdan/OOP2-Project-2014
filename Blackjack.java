@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Blackjack extends JFrame //implements ActionListener  
+public class Blackjack extends JFrame implements ActionListener  
 {
 	Container cPane = getContentPane();
 	private JMenuBar menubar;
@@ -43,7 +43,7 @@ public class Blackjack extends JFrame //implements ActionListener
 		setJMenuBar(menubar);	
 			
 		gameFileMenu();
-		helpMenu();
+		helpMenuFile();
 			
 		cPane.setLayout(new FlowLayout());
 		
@@ -61,7 +61,7 @@ public class Blackjack extends JFrame //implements ActionListener
 		
 	}//end no operator constructor
 	
-	//create the file menu in the bar
+	//create the game menu in the bar
 	public void gameFileMenu()
 	{
 		//create a file called File
@@ -76,14 +76,28 @@ public class Blackjack extends JFrame //implements ActionListener
 		JMenuItem statsItem = new JMenuItem("Statistics");
 		gameMenu.add(statsItem);	
 		
-		
-	}
-	public void helpMenu()
+	}//end gameFileMemu construtor
+	
+	//create game menu in the bar
+	public void helpMenuFile()
 	{
+		//create a file call help
 		JMenu helpMenu = new JMenu("Help");
 		menubar.add(helpMenu);
-	}
+		
+		//add actionListener to give function to the button
+		helpMenu.addActionListener(this);
+	}//end helpMenu constructor
 	
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getActionCommand().equals("Help"))
+		{
+			JOptionPane.showMessageDialog(null,"The object of the game is to draw cards totaling to  21 without drawing over, cards 2-10 are worth their face value while "
+										+"kings, queens and jacks are worth 10, aces are equal to 1 or 11. At the start of the game you are given 2 cards, you can then "
+										+"either hit to get another card, or stand to face of the oponent with what you have.");
+		}//end if "Help"
+	}//end actionPerformed
 	
 } //end class
 
