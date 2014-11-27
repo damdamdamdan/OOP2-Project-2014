@@ -2,10 +2,13 @@
 
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.*;
 
 
-public class Blackjack extends JFrame implements ActionListener  
+public class Blackjack extends JFrame //implements ActionListener  
 {
+	Container cPane = getContentPane();
+	private JMenuBar menubar;
 	public static void main(String args[])
 	{
 		Blackjack window = new Blackjack();
@@ -37,21 +40,48 @@ public class Blackjack extends JFrame implements ActionListener
 		
 		//create JMenuBar
 		menubar = new JMenuBar();
-		setJMenuBar(menubar);		
+		setJMenuBar(menubar);	
+			
+		gameFileMenu();
+		helpMenu();
+			
+		cPane.setLayout(new FlowLayout());
+		
+			/*****************************************************
+*    Title:  
+*    Author: Brian Pipa
+*    Site owner/sponsor:  www.coderanch.com
+*    Date: 
+*    Code version:  
+*    Availability:  http://www.coderanch.com/t/337333/GUI/java/hex-set-background-color
+*    Modified:  
+*****************************************************/	
+		//setting the background color in hex
+		cPane.setBackground(Color.decode("#006400"));	
 		
 	}//end no operator constructor
 	
 	//create the file menu in the bar
-	public void createFileMenu()
+	public void gameFileMenu()
 	{
 		//create a file called File
-		JMenu fileMenu = new JMenu("File");
+		JMenu gameMenu = new JMenu("Game");
 		//add the file to the menubar
-		menubar.add(fileMenu);
+		menubar.add(gameMenu);
+		
+		//create items for the file
+		JMenuItem newGameItem = new JMenuItem("New Game");
+		gameMenu.add(newGameItem);
+		
+		JMenuItem statsItem = new JMenuItem("Statistics");
+		gameMenu.add(statsItem);	
 		
 		
-		
-		
+	}
+	public void helpMenu()
+	{
+		JMenu helpMenu = new JMenu("Help");
+		menubar.add(helpMenu);
 	}
 	
 	
