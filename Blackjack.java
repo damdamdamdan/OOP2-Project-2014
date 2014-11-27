@@ -10,7 +10,14 @@ public class Blackjack extends JFrame implements ActionListener
 	{
 		Blackjack window = new Blackjack();
 		window.setVisible(true);
-		window.setSize(600,600);
+
+		
+	}// end main
+	
+	//start no operator constructor
+	public Blackjack()
+	{
+		setSize(600,600);
 		
 			/*****************************************************
 *    Title:  
@@ -21,9 +28,31 @@ public class Blackjack extends JFrame implements ActionListener
 *    Availability:  http://stackoverflow.com/questions/9543320/how-to-position-the-form-in-the-center-screen
 *    Modified:  
 *****************************************************/	
-		window.setLocationRelativeTo(null);
+		//set location to centre
+		setLocationRelativeTo(null);
+		//set title
+		setTitle("Blackjack");
+		//makes the program exit the application when clicked on the close button
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-	}// end main
+		//create JMenuBar
+		menubar = new JMenuBar();
+		setJMenuBar(menubar);		
+		
+	}//end no operator constructor
+	
+	//create the file menu in the bar
+	public void createFileMenu()
+	{
+		//create a file called File
+		JMenu fileMenu = new JMenu("File");
+		//add the file to the menubar
+		menubar.add(fileMenu);
+		
+		
+		
+		
+	}
 	
 	
 } //end class
