@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Blackjack extends JFrame implements ActionListener  
+public class BlackJackGame extends JFrame implements ActionListener  
 {
 	Container cPane = getContentPane();
 	private JMenuBar menubar;
@@ -14,6 +14,8 @@ public class Blackjack extends JFrame implements ActionListener
 	{
 		Blackjack window = new Blackjack();
 		window.setVisible(true);
+		
+		Cards cards = new Cards();
 
 		
 	}// end main
@@ -116,6 +118,16 @@ public class Blackjack extends JFrame implements ActionListener
 										+"kings, queens and jacks are worth 10, aces are equal to 1 or 11. At the start of the game you are given 2 cards, you can then \n"
 										+"either hit to get another card, or stand to face of the oponent with what you have.");
 		}//end if "Help"
+		
+		if(e.getActionComand().equals("Hit"))
+		{
+			hit();
+		}
+		
+		if(e.getActionCommand().equals("Stay"))
+		{
+			Cards.Stay();
+		}
 	}//end actionPerformed
 	
 } //end class
