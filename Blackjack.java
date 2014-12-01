@@ -9,6 +9,7 @@ public class Blackjack extends JFrame implements ActionListener
 {
 	Container cPane = getContentPane();
 	private JMenuBar menubar;
+
 	public static void main(String args[])
 	{
 		Blackjack window = new Blackjack();
@@ -44,7 +45,8 @@ public class Blackjack extends JFrame implements ActionListener
 			
 		gameFileMenu();
 		helpMenuFile();
-			
+		gameButtons();
+								
 		cPane.setLayout(new FlowLayout());
 		
 			/*****************************************************
@@ -82,19 +84,36 @@ public class Blackjack extends JFrame implements ActionListener
 	public void helpMenuFile()
 	{
 		//create a file call help
-		JMenu helpMenu = new JMenu("Help");
+		JMenuItem helpMenu = new JMenuItem("Help");
 		menubar.add(helpMenu);
 		
 		//add actionListener to give function to the button
 		helpMenu.addActionListener(this);
 	}//end helpMenu constructor
 	
+	//adding the hit and stay button
+	public void gameButtons()
+	{
+		JButton hitButton = new JButton("Hit");
+		cPane.add(hitButton);
+		hitButton.setLocation(200,500);
+		
+		hitButton.addActionListener(this);
+	
+		
+		JButton stayButton = new JButton("Stay");
+		cPane.add(stayButton);
+		stayButton.setLocation(450,500);
+		
+		stayButton.addActionListener(this);
+	}
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		if (e.getActionCommand().equals("Help"))
 		{
-			JOptionPane.showMessageDialog(null,"The object of the game is to draw cards totaling to  21 without drawing over, cards 2-10 are worth their face value while "
-										+"kings, queens and jacks are worth 10, aces are equal to 1 or 11. At the start of the game you are given 2 cards, you can then "
+			JOptionPane.showMessageDialog(null,"The object of the game is to draw cards totaling to  21 without drawing over, cards 2-10 are worth their face value while \n"
+										+"kings, queens and jacks are worth 10, aces are equal to 1 or 11. At the start of the game you are given 2 cards, you can then \n"
 										+"either hit to get another card, or stand to face of the oponent with what you have.");
 		}//end if "Help"
 	}//end actionPerformed
