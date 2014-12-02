@@ -12,7 +12,7 @@ public class BlackJackGame extends JFrame implements ActionListener
 
 	public static void main(String args[])
 	{
-		Blackjack window = new Blackjack();
+		BlackJackGame window = new BlackJackGame();
 		window.setVisible(true);
 		
 		Cards cards = new Cards();
@@ -21,9 +21,9 @@ public class BlackJackGame extends JFrame implements ActionListener
 	}// end main
 	
 	//start no operator constructor
-	public Blackjack()
+	public BlackJackGame()
 	{
-		setSize(600,600);
+		setSize(200,200);
 		
 			/*****************************************************
 *    Title:  
@@ -98,14 +98,12 @@ public class BlackJackGame extends JFrame implements ActionListener
 	{
 		JButton hitButton = new JButton("Hit");
 		cPane.add(hitButton);
-		hitButton.setLocation(200,500);
-		
+	
 		hitButton.addActionListener(this);
 	
 		
 		JButton stayButton = new JButton("Stay");
 		cPane.add(stayButton);
-		stayButton.setLocation(450,500);
 		
 		stayButton.addActionListener(this);
 	}
@@ -119,7 +117,7 @@ public class BlackJackGame extends JFrame implements ActionListener
 										+"either hit to get another card, or stand to face of the oponent with what you have.");
 		}//end if "Help"
 		
-		if(e.getActionComand().equals("Hit"))
+	/*	if(e.getActionComand().equals("Hit"))
 		{
 			hit();
 		}
@@ -127,7 +125,7 @@ public class BlackJackGame extends JFrame implements ActionListener
 		if(e.getActionCommand().equals("Stay"))
 		{
 			Cards.Stay();
-		}
+		}*/
 	}//end actionPerformed
 	
 } //end class
