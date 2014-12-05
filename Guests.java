@@ -1,54 +1,36 @@
 //Blackjack.java
 import java.util.*;
-
-public class Cards 
+import javax.swing.*;
+public class Guests 
 {	
-	//Create a list of all the cards
-	LinkedList cards = new LinkedList();
-	String [] deck;
-	
-	cards.add("Two");
-	cards.add("Three");
-	cards.add("Four");
-	cards.add("Five");
-	cards.add("Six");
-	cards.add("Seven");
-	cards.add("Eight");
-	cards.add("Nine");
-	cards.add("Ten");
-	cards.add("Jack");
-	cards.add("Queen");
-	cards.add("King");
-	cards.add("Ace");
-	
-	
-	//different type of cards
-	LinkedList suits = new LinkedList();
-	
-	suits.add("Clubs");
-	suits.add("Hearts");
-	suits.add("Spades");
-	suits.add("Diamonds");
 
-	public void createDeck()
-	{
-		for(int i = 0; i<cards.length; i++)
-			{
-				for(int o=0;i<suits;o++)
-				{
-					
-					deck.
-				}
-			}
-
-	}//end create deck
-
-	public String toString()
-	{
-		return 	getList() + " of "+ suits;
-	}//end toString
 	
-}//end class
+	List<Person> guests;
+	
+	private int creditCard;
+	private boolean cash = false;
+	private int mobile;
+	private int month;
+	private int day;
+	private int year;
+	private int rDay;
+	private int rMonth;
+	private int rYear;
+	private int price = 80;
+	
 
-  //linkedList.remove() , linkedList.add(), linkedList.removeFirst(),
-  //linkedList.removeLast();, linkedList.set();
+	Person guest = new Person();
+
+	guest.setForename(JOptionPane.showInputDialog("Please enter the forename:"));
+	guest.setSurname (JOptionPane.showInputDialog("Please enter the surname:"));
+	guest.setAge (Integer.parseInt(JOptionPane.showInputDialog("Please enter the age:")));
+	guest.setGender(JOptionPane.showInputDialog("Please enter the gender:"));
+	
+	JOptionPane.showMessageDialog(null,guest.toString());
+
+
+
+
+
+
+}//end Class
