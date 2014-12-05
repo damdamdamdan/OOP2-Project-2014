@@ -3,27 +3,25 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import java.io.*;
 
-
-public class BlackJackGame extends JFrame implements ActionListener  
+public class HotelSystemDriver extends JFrame implements ActionListener  
 {
 	Container cPane = getContentPane();
 	private JMenuBar menubar;
 
 	public static void main(String args[])
 	{
-		BlackJackGame window = new BlackJackGame();
+		HotelSystemDriver window = new HotelSystemDriver();
 		window.setVisible(true);
 		
-		Cards cards = new Cards();
-
-		
+				
 	}// end main
 	
 	//start no operator constructor
-	public BlackJackGame()
+	public HotelSystemDriver()
 	{
-		setSize(200,200);
+		setSize(800,800);
 		
 			/*****************************************************
 *    Title:  
@@ -45,11 +43,11 @@ public class BlackJackGame extends JFrame implements ActionListener
 		menubar = new JMenuBar();
 		setJMenuBar(menubar);	
 			
-		gameFileMenu();
-		helpMenuFile();
-		gameButtons();
+		fileMenuFile();
+		customerMenuFile();
+	//	gameButtons();
 								
-		cPane.setLayout(new FlowLayout());
+		cPane.setLayout(null);
 		
 			/*****************************************************
 *    Title:  
@@ -66,67 +64,72 @@ public class BlackJackGame extends JFrame implements ActionListener
 	}//end no operator constructor
 	
 	//create the game menu in the bar
-	public void gameFileMenu()
+	public void fileFileMenu()
 	{
-		//create a file called File
-		JMenu gameMenu = new JMenu("Game");
+		//create a file
+		JMenu file = new JMenu("File");
 		//add the file to the menubar
-		menubar.add(gameMenu);
+		menubar.add(file);
 		
 		//create items for the file
-		JMenuItem newGameItem = new JMenuItem("New Game");
-		gameMenu.add(newGameItem);
+		JMenuItem saveFile = new JMenuItem("Save");
+		fileFile.add(saveFile);
+		
+		saveFile.addActionListener(this);
 		
 		JMenuItem statsItem = new JMenuItem("Statistics");
-		gameMenu.add(statsItem);	
+		fileFile.add(statsItem);	
 		
-	}//end gameFileMemu construtor
+		//add action listener
+		statsItem.addActionListener(this);
+		
+		JMenuItem loadFile = new JMenuItem("Load");
+		fileFile.add(loadFile);
+		
+		loadFile.addActionListener(this);
+	}//end fileFileMemu construtor
 	
-	//create game menu in the bar
-	public void helpMenuFile()
+	//create a customors menuy
+	public void customersMenuFile()
 	{
 		//create a file call help
-		JMenuItem helpMenu = new JMenuItem("Help");
-		menubar.add(helpMenu);
+		JMenu customerMenu = new JMenu("Customers");
+		menubar.add(customerMenu);
 		
-		//add actionListener to give function to the button
-		helpMenu.addActionListener(this);
-	}//end helpMenu constructor
+		JMenuItem newCustomer = new JMenu("New Customer");
+		customerMenu.add(newCustomer);
+		
+		newCustomer.addActionListener(this);
+	}//end customerMenuFile constructor
 	
 	//adding the hit and stay button
-	public void gameButtons()
+//buttons, no use as of now	public void gameButtons()
 	{
 		JButton hitButton = new JButton("Hit");
 		cPane.add(hitButton);
 	
 		hitButton.addActionListener(this);
-	
+		
+		
 		
 		JButton stayButton = new JButton("Stay");
 		cPane.add(stayButton);
-		
+	
+	
 		stayButton.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getActionCommand().equals("Help"))
+		if (e.getActionCommand().equals("Save"))
 		{
-			JOptionPane.showMessageDialog(null,"The object of the game is to draw cards totaling to  21 without drawing over, cards 2-10 are worth their face value while \n"
-										+"kings, queens and jacks are worth 10, aces are equal to 1 or 11. At the start of the game you are given 2 cards, you can then \n"
-										+"either hit to get another card, or stand to face of the oponent with what you have.");
-		}//end if "Help"
+			
+		}//end i
 		
-	/*	if(e.getActionComand().equals("Hit"))
-		{
-			hit();
-		}
-		
-		if(e.getActionCommand().equals("Stay"))
-		{
-			Cards.Stay();
-		}*/
+
 	}//end actionPerformed
+	
+	
 	
 } //end class
 
