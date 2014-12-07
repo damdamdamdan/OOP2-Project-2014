@@ -9,6 +9,11 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 {
 	Container cPane = getContentPane();
 	private JMenuBar menubar;
+	
+	Person guest = new Person();
+	Staff staff = new Staff();
+	
+	LinkedList <Person> guests = new LinkedList(); 
 
 	public static void main(String args[])
 	{
@@ -35,7 +40,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		//set location to centre
 		setLocationRelativeTo(null);
 		//set title
-		setTitle("Blackjack");
+		setTitle("Hotel");
 		//makes the program exit the application when clicked on the close button
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
