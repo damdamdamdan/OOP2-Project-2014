@@ -7,13 +7,14 @@ import java.io.*;
 
 public class HotelSystemDriver extends JFrame implements ActionListener  
 {
-	Container cPane = getContentPane();
+	private Container cPane = getContentPane();
 	private JMenuBar menubar;
-	
+	private JPanel panel = new JPanel();
+		
 	Person guest = new Person();
 	Staff staff = new Staff();
 	
-	LinkedList <Person> guests = new LinkedList(); 
+//	LinkedList <Person> guests = new LinkedList(); 
 
 	public static void main(String args[])
 	{
@@ -48,12 +49,14 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		menubar = new JMenuBar();
 		setJMenuBar(menubar);	
 			
-		fileMenuFile();
-		customerMenuFile();
-	//	gameButtons();
+		fileFileMenu();
+		customersMenuFile();
+		staffLogIn();
 								
-		cPane.setLayout(null);
+		cPane.setLayout(new FlowLayout());
 		
+		panel = new JPanel();
+		cPane.add(panel);
 			/*****************************************************
 *    Title:  
 *    Author: Brian Pipa
@@ -69,6 +72,26 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 	}//end no operator constructor
 	
 	//create the game menu in the bar
+	public void staffLogIn()
+	{
+		JLabel userName = new JLabel("Username:");
+		panel.add(userName);
+		
+		JFormattedTextField username = new JFormattedTextField();
+		username = new JFormattedTextField();
+		username.setColumns(10);
+		
+		
+		panel.add(username);
+		this.setLocation(200,200);
+		
+		JPasswordField password = new JPasswordField();
+		password = new JPasswordField();
+		password.setColumns(10);
+		
+		panel.add(password);
+		
+	}//end staff log in
 	public void fileFileMenu()
 	{
 		//create a file
@@ -78,18 +101,18 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		
 		//create items for the file
 		JMenuItem saveFile = new JMenuItem("Save");
-		fileFile.add(saveFile);
+		file.add(saveFile);
 		
 		saveFile.addActionListener(this);
 		
 		JMenuItem statsItem = new JMenuItem("Statistics");
-		fileFile.add(statsItem);	
+		file.add(statsItem);	
 		
 		//add action listener
 		statsItem.addActionListener(this);
 		
 		JMenuItem loadFile = new JMenuItem("Load");
-		fileFile.add(loadFile);
+		file.add(loadFile);
 		
 		loadFile.addActionListener(this);
 	}//end fileFileMemu construtor
@@ -107,21 +130,14 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		newCustomer.addActionListener(this);
 	}//end customerMenuFile constructor
 	
-	//adding the hit and stay button
-//buttons, no use as of now	public void gameButtons()
+	
+	//Log in Button
 	{
-		JButton hitButton = new JButton("Hit");
-		cPane.add(hitButton);
+		JButton logIn = new JButton("Log in");
+		cPane.add(logIn);
 	
-		hitButton.addActionListener(this);
-		
-		
-		
-		JButton stayButton = new JButton("Stay");
-		cPane.add(stayButton);
-	
-	
-		stayButton.addActionListener(this);
+		logIn.addActionListener(this);
+			
 	}
 	
 	public void actionPerformed(ActionEvent e)
