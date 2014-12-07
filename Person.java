@@ -2,10 +2,14 @@
 
 public class Person
 {
+	//forename of guest
 	private String forename;
+	//surname of guest
 	private String surname;
+	//age
 	private int age;
-	private String gender;
+	//phone number	
+	private int mNumber;
 	
 	//no argument constructor 
 	public Person()
@@ -13,15 +17,16 @@ public class Person
 		forename = "null";
 		surname = "null";
 		age = 0;
-		gender = "u";
+		mNumber = 0;
+		
 	}	
 	//multi argument constructor
-	public Person(String mForename, String mSurname, int mAge, String mGender)
+	public Person(String mForename, String mSurname, int mAge, int number)
 	{
 		setForename(mForename);
 		setSurname(mSurname);
 		setAge(mAge);
-		setGender(mGender);
+		setNumber(number);
 	}
 	//constructor for setting the name
 	public void setForename(String mForename)
@@ -54,19 +59,19 @@ public class Person
 		return age;
 	}
 	//constructor for setting the gender
-	public void setGender(String mGender)
+	public void setNumber(int number)
 	{
 	
-		this.gender = mGender;
+		this.mNumber = number;
 	}
 	//constructor for getting the gender
-	public String getGender()
+	public int getNumber()
 	{
-		return gender;
+		return mNumber;
 	}
 	//overiding the toString method
 	public String toString()
 	{
-		return "Forename:" + getForename() + "\nSurname:" + getSurname() + "\nAge:" + getAge() + "\nGender:" + getGender();
+		return "Forename:" + getForename() + "\nSurname:" + getSurname() + "\nAge:" + getAge() + "\nPhone Number:" + getNumber();
 	}
 }//end Person class
