@@ -9,21 +9,30 @@ import java.util.*;
 
 public class HotelSystemDriver extends JFrame implements ActionListener  
 {
+	//create a container
 	private Container cPane = getContentPane();
+	
+	//create a JMenubar
 	private JMenuBar menubar;
+	
+	//create a panel
 	private JPanel panel = new JPanel(new GridBagLayout());
-			
+	
+	//create a person		
 	Person guest = new Person();
 	
-	Staff staff = new Staff();
-	
-	
+	//create a staff member
+	Staff staff = new Staff();	
 		
+	//create a linkedlist to store the guests
 	LinkedList <Person> guests = new LinkedList(); 
 
 	public static void main(String args[])
 	{
+		//create a winow to display the gui elements on
 		HotelSystemDriver window = new HotelSystemDriver();
+		
+		//make the window visible
 		window.setVisible(true);				
 	}// end main
 	
@@ -54,12 +63,12 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		setJMenuBar(menubar);	
 			
 		fileFileMenu();
-		customersMenuFile();
+		guestMenuFile();
 		staffLogIn();
 	
 										
 		cPane.setLayout(new FlowLayout());	
-		menubar.setVisible(false);
+		menubar.setVisible(true);
 			
 			/*****************************************************
 *    Title:  
@@ -71,10 +80,12 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 *    Modified:  
 *****************************************************/	
 		//setting the background color in hex
-		cPane.setBackground(Color.decode("#393939"));	
+		cPane.setBackground(Color.decode("#393939"));				
 			
-			
+		//create a staff member
 		staff.setStaffId("user1");
+		
+		//create a password for staff
 		staff.setPassword("abcdefg");
 		
 	}//end no operator constructor
@@ -133,11 +144,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		con.gridy = 10;	
 		
 		//add a listener
-		username.addActionListener(this);
-		
-		
-		
-		
+		username.addActionListener(this);		
 		
 		//add to the panel
 		panel.add(username, con);
@@ -220,23 +227,23 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		loadFile.addActionListener(this);
 	}//end fileFileMemu construtor
 	
-	//create a customors menuy
-	public void customersMenuFile()
+	//create a guest menu file
+	public void guestMenuFile()
 	{
-		//create a customer Menu JMenu
-		JMenu customerMenu = new JMenu("Customers");
+		//create a guest Menu JMenu
+		JMenu guestMenu = new JMenu("Guest");
 		
 		//add the customerMenu to the menubar
-		menubar.add(customerMenu);
+		menubar.add(guestMenu);
 		
 		//create an item for the customerMenu
-		JMenuItem newCustomer = new JMenu("New Customer");
+		JMenuItem newGuest = new JMenuItem("New Guest");
 		
 		//add the item to the customerMenu
-		customerMenu.add(newCustomer);
+		guestMenu.add(newGuest);
 		
 		//add actionListener
-		newCustomer.addActionListener(this);
+		newGuest.addActionListener(this);
 		
 	}//end customerMenuFile constructor
 	
@@ -256,6 +263,8 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		
 		//close the stream
 		oos.close();
+		
+		JOptionPane.showMessageDialog(null,"Saved.");
 	}//end save(
 		
 	public void load()
@@ -269,7 +278,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 			inputStream = new ObjectInputStream(new FileInputStream("guestsFile.dat"));
 			
 			//create a linkedlist fronm the file
-			guests = (LinkedList<Person>) inputStream.readObject();
+			guests = (LinkedList<Person>)inputStream.readObject();
 			
 			//close the stream
 			inputStream.close();
@@ -281,6 +290,13 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 			l.printStackTrace();
 		}
 	}
+	public void guestList()
+	{		
+		for(Person p:guests){
+		  JOptionPane.showMessageDialog(null,p.toString());
+		}
+
+	}//end guestList
 		
 	public void actionPerformed(ActionEvent e)
 	{
@@ -307,6 +323,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		if(e.getActionCommand().equals("Guests"))
 		{
 			load();	
+			guestList();
 		}	
 			
 	/*	if(username.getText().equals("staff.getStaffId()")&&password.getText().equals("staff.getPassword()")&&e.getActionCommand().equals("Log In"))
@@ -315,6 +332,21 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 				panel.setVisible(false);
 			}
 	*/	
+		if(e.getActionCommand().equals("New Guest"))
+		{
+			guest.setForename(JOptionPane.showInputDialog("Please enter the forename:"));
+			guest.setSurname(JOptionPane.showInputDialog("Please enter the surname:"));
+			guest.setAge(Integer.parseInt(JOptionPane.showInputDialog("Please enter the age:")));
+			guest.setNumber(Integer.parseInt(JOptionPane.showInputDialog("Please enter the mobile number:")));
+			
+			JOptionPane.showMessageDialog(null,(guest.toString())+"\n\n\nRecord Stored");
+			
+		}
+		if(e.getActionCommand().equals("Load"))
+		{
+			load();
+			guestList();
+		}
 	
 	}
 	

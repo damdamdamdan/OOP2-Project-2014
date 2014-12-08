@@ -1,7 +1,11 @@
 //Person.java
+/**This is an instantiable Person class.
+ @Daniel Ufir
+ @version 1.7*/
 
 public class Person
 {
+	//attributes
 	//forename of guest
 	private String forename;
 	//surname of guest
@@ -11,7 +15,8 @@ public class Person
 	//phone number	
 	private int mNumber;
 	
-	//no argument constructor 
+	/**no argument constroctor method
+	 @param forename, surname, age, number*/
 	public Person()
 	{
 		forename = "null";
@@ -20,7 +25,8 @@ public class Person
 		mNumber = 0;
 		
 	}	
-	//multi argument constructor
+	/**multi argument constructor method
+	 @param forename, surname, age, number*/
 	public Person(String mForename, String mSurname, int mAge, int number)
 	{
 		setForename(mForename);
@@ -28,50 +34,59 @@ public class Person
 		setAge(mAge);
 		setNumber(number);
 	}
-	//constructor for setting the name
+	/** mutator method for setting up the forename of the guest
+	 @param forename of the guest*/
 	public void setForename(String mForename)
 	{
 		this.forename = mForename;
 	}
-	//constructor for getting the name
+	/** acessor method to return the guests forename
+	 *@return the forename of the guest */
 	public String getForename()
 	{
 		return forename;
 	}
-	//constructor for setting the surname
+	/** mutator method for setting up the surname of the guest
+	 @param surname of the guest*/
 	public void setSurname(String mSurname)
 	{
 		this.surname = mSurname;
 	}
-	//constructor for getting the surname
+	/** acessor method to return the guests surname
+	 *@return the surname of the guest */
 	public String getSurname()
 	{
 		return surname;
 	}
-	//constructor for setting the age
+	/** mutator method for setting up the age of the guest
+	 *@param age of the guest*/
 	public void setAge(int mAge)
 	{
 		this.age = mAge;
 	}
-	//constructor for getting the age
+	/** acessor method to return the guests age
+	 *@return the age of the guest */
 	public int getAge()
 	{
 		return age;
 	}
-	//constructor for setting the gender
+	/** mutator method for setting up the number of the guest
+	 *@param number of the guest*/
 	public void setNumber(int number)
 	{
 	
 		this.mNumber = number;
 	}
-	//constructor for getting the gender
+	/** acessor method to return the guests number
+	 *@return the number of the guest */
 	public int getNumber()
 	{
 		return mNumber;
 	}
-	//overiding the toString method
+	/*toSTring method to return the guests details
+	 *@return the forename, surname, age and number as string*/
 	public String toString()
 	{
-		return "Forename:" + getForename() + "\nSurname:" + getSurname() + "\nAge:" + getAge() + "\nPhone Number:" + getNumber();
+		return "Forename:\t " + getForename() + "\nSurname: \t" + getSurname() + "\nAge:\t " + getAge() + "\nPhone Number:\t " + getNumber();
 	}
 }//end Person class
