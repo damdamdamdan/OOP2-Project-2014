@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import java.util.*;
+
 
 public class HotelSystemDriver extends JFrame implements ActionListener  
 {
@@ -12,8 +14,11 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 	private JPanel panel = new JPanel(new GridBagLayout());
 			
 	Person guest = new Person();
+	
 	Staff staff = new Staff();
 	
+	
+		
 	LinkedList <Person> guests = new LinkedList(); 
 
 	public static void main(String args[])
@@ -51,8 +56,10 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		fileFileMenu();
 		customersMenuFile();
 		staffLogIn();
+	
 										
 		cPane.setLayout(new FlowLayout());	
+		menubar.setVisible(false);
 			
 			/*****************************************************
 *    Title:  
@@ -64,7 +71,11 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 *    Modified:  
 *****************************************************/	
 		//setting the background color in hex
-		cPane.setBackground(Color.decode("#006400"));	
+		cPane.setBackground(Color.decode("#393939"));	
+			
+			
+		staff.setStaffId("user1");
+		staff.setPassword("abcdefg");
 		
 	}//end no operator constructor
 	
@@ -82,11 +93,13 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 *****************************************************/	
 		
 		GridBagConstraints con = new GridBagConstraints();
+		panel.setBackground(Color.decode("#FF5A09"));
 		//create border around everything
 		con.insets = new Insets(10,10,10,10);
 		
 		//create a label to inform the staff of what to input into the box
 		JLabel userName = new JLabel("Username:");
+		
 		
 		//set location
 		con.gridx = 10;
@@ -106,13 +119,14 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 *    Modified:  
 *****************************************************/	
 
-		JFormattedTextField username = new JFormattedTextField();
+		JTextField username = new JTextField();
 		
 		//create a text field for user input
-		username = new JFormattedTextField();
-		
+		username = new JTextField();
+				
 		//set size
 		username.setColumns(10); 
+		
 		
 		//set location	
 		con.gridx = 15;
@@ -120,6 +134,10 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		
 		//add a listener
 		username.addActionListener(this);
+		
+		
+		
+		
 		
 		//add to the panel
 		panel.add(username, con);
@@ -145,8 +163,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		con.gridx = 15;
 		con.gridy = 12;
 		
-		//add a listener
-		password.addActionListener(this);
+		password.addActionListener(this);		
 		
 		//add the box to the panel
 		panel.add(password,con);
@@ -223,30 +240,86 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		
 	}//end customerMenuFile constructor
 	
-	public void save() throws IOException
+	public void save() throws FileNotFoundException, IOException
 	{
-		ObjectOutputStream outputStream;
-		outputStream = new ObjectOutputStream(new FileOutputStream("guest.dat"));
-		outputStream.writeObject(guests);
-		outputStream.close();
+		//create a file called guestsFile.dat
+		File guestsFile = new File("guestsFile.dat");
+		
+		//create a file output stream
+		FileOutputStream fos = new FileOutputStream(guestsFile);
+		
+		//create object output stream
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		
+		//write the guests into the object output stream
+		oos.writeObject(guests);
+		
+		//close the stream
+		oos.close();
 	}//end save(
+		
+	public void load()
+	{
+		try
+		{
+			//create an input stream
+			ObjectInputStream inputStream;
+			
+			//find the saved file to load
+			inputStream = new ObjectInputStream(new FileInputStream("guestsFile.dat"));
+			
+			//create a linkedlist fronm the file
+			guests = (LinkedList<Person>) inputStream.readObject();
+			
+			//close the stream
+			inputStream.close();
+		}
+		
+		//catch the exception
+		catch(Exception l)
+		{
+			l.printStackTrace();
+		}
+	}
 		
 	public void actionPerformed(ActionEvent e)
 	{
 		if (e.getActionCommand().equals("Save"))
 		{
+		try
+		{
 			save();
+		}
+		//catch the file not found exception
+		catch(FileNotFoundException f)
+			{
+			
+				f.printStackTrace();
+			}
+		//catch the io exception
+		catch(IOException i)
+			{
+				i.printStackTrace();
+			}		
+			
 		}//end save
 		
-		if(e.getActionCommand().equals(""))
+		if(e.getActionCommand().equals("Guests"))
 		{
+			load();	
+		}	
 			
-		}
-		
+	/*	if(username.getText().equals("staff.getStaffId()")&&password.getText().equals("staff.getPassword()")&&e.getActionCommand().equals("Log In"))
+			{
+				menubar.setVisible(true);
+				panel.setVisible(false);
+			}
+	*/	
+	
+	}
+	
 
-	}//end actionPerformed
-	
-	
+	//end actionPerformed
 	
 } //end class
 
