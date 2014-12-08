@@ -13,6 +13,10 @@ import java.util.*;
 
 public class HotelSystemDriver extends JFrame implements ActionListener  
 {
+	//Attributes
+	
+	private JTextArea area;
+	
 	//create a container
 	private Container cPane = getContentPane();
 	
@@ -40,6 +44,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 	//create a linkedlist to store the guests
 	LinkedList <Person> guests = new LinkedList(); 
 
+	//main
 	public static void main(String args[])
 	{
 		//create a winow to display the gui elements on
@@ -308,10 +313,14 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 	}
 	public void guestList()
 	{		
+		area = new JTextArea();
+		area.setEditable(false);
 		for(Person p:guests){
-		  JOptionPane.showMessageDialog(null,p.toString());
+			area.append(p.toString()+"\n");
+		
+		  JOptionPane.showMessageDialog(null,area);
 		}
-
+			
 	}//end guestList
 		
 	public void actionPerformed(ActionEvent e)
@@ -336,30 +345,32 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 			
 		}//end save
 		
+		//display the table with guests
 		if(e.getActionCommand().equals("Guests"))
 		{
 			load();	
 			guestList();
 		}	
 		
-		String user = username.getText();
+	
 			
 	
 	/*	if(e.getActionCommand().equals("Log In") && username.getText().equals("staff.getStaffId()") && password.getText().equals("staff.getPassword()"))
 			{
+				
+			
+			}*/
+	/*	if(username.getText().equals("user1"))
+		{
+			System.out.println("sgf");
+		}*/
+		if(e.getActionCommand().equals("Log In")) 
+			{
 				menubar.setVisible(true);
 				panel.setVisible(false);
-				System.out.println("hi");
-			}*/
-		if(e.getActionCommand().equals("Log In"))
-			{
-				System.out.println(user);
-				
-			//	JOptionPane.showMessageDialog(username.getText().toString());
-			//	JOptionPane.showMessageDialog(null,"Invalid!, please try again"+username.getText()+"+password.getText()+");
+			
 			}
 			
-		
 		if(e.getActionCommand().equals("New Guest"))
 		{
 			guest.setForename(JOptionPane.showInputDialog("Please enter the forename:"));
@@ -376,10 +387,6 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 			guestList();
 		}
 		
-		if(password.getText() == "hi")
-		{
-			System.out.println("sd");
-		}
 	
 		/*
 		DocumentListener documentListener = new DocumentListener() {
