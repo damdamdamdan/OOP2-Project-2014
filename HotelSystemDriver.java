@@ -1,14 +1,14 @@
-//Blackjack.java
+//HotelSystemDriver.java
+/**Driver class for the system
+ @Written by Daniel Ufir
+ @1.0*/
+ 
 
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
-
 
 
 public class HotelSystemDriver extends JFrame implements ActionListener  
@@ -107,7 +107,7 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		
 	}//end no operator constructor
 	
-	//create the game menu in the bar
+	//staff login method
 	public void staffLogIn()
 	{
 			/*****************************************************
@@ -243,14 +243,23 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		//add the customerMenu to the menubar
 		menubar.add(guestMenu);
 		
-		//create an item for the customerMenu
+		//create an item for the guestMenu
 		JMenuItem newGuest = new JMenuItem("New Guest");
 		
 		//add the item to the customerMenu
 		guestMenu.add(newGuest);
 		
+		//add item for the guestMenu
+		JMenuItem gues = new JMenuItem("Guests");
+		
+		guestMenu.add(gues);
+		
+		gues.addActionListener(this);
+		
 		//add actionListener
 		newGuest.addActionListener(this);
+		
+		//create an item for the 
 		
 	}//end customerMenuFile constructor
 	
