@@ -5,6 +5,10 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+
 
 
 public class HotelSystemDriver extends JFrame implements ActionListener  
@@ -14,6 +18,15 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 	
 	//create a JMenubar
 	private JMenuBar menubar;
+	
+	//create a JButton
+	JButton login;
+	
+	//creat JTextField for username
+	private JTextField username;
+	
+	//create JPasswordField for the password input
+	private JPasswordField password;
 	
 	//create a panel
 	private JPanel panel = new JPanel(new GridBagLayout());
@@ -39,7 +52,8 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 	//start no operator constructor
 	public HotelSystemDriver()
 	{
-		setSize(800,800);		
+		//set up the size of the scrren
+		setSize(600,600);		
 			/*****************************************************
 *    Title:  
 *    Author: Hovercraft Full Of Eels
@@ -62,13 +76,16 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		menubar = new JMenuBar();
 		setJMenuBar(menubar);	
 			
+		//call methods
 		fileFileMenu();
 		guestMenuFile();
 		staffLogIn();
 	
-										
+		//set layout for the container		
 		cPane.setLayout(new FlowLayout());	
-		menubar.setVisible(true);
+		
+		//turn of the container till login succeful
+		menubar.setVisible(false);
 			
 			/*****************************************************
 *    Title:  
@@ -129,22 +146,21 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 *    Availability:  https://docs.oracle.com/javase/tutorial/uiswing/components/textfield.html
 *    Modified:  
 *****************************************************/	
-
-		JTextField username = new JTextField();
 		
+		JTextField username;
+	   		
 		//create a text field for user input
-		username = new JTextField();
-				
-		//set size
-		username.setColumns(10); 
-		
-		
+		username = new JTextField(10);
+					
 		//set location	
 		con.gridx = 15;
 		con.gridy = 10;	
 		
+		username.requestFocus();
+		
+		
 		//add a listener
-		username.addActionListener(this);		
+	//	username.getDocument().addDocumentListener(documentListener);		
 		
 		//add to the panel
 		panel.add(username, con);
@@ -170,23 +186,24 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		con.gridx = 15;
 		con.gridy = 12;
 		
-		password.addActionListener(this);		
+		password.addActionListener(this);
+	//	password.getDocument().addDocumentListener(documentListener);		
 		
 		//add the box to the panel
 		panel.add(password,con);
 		
 		//create a jButton
-		JButton logIn = new JButton("Log in");
+		JButton login = new JButton("Log In");
 		
 		//set the location
 		con.gridx = 15;
 		con.gridy = 15;
 		
 		//add the button to the panel
-		panel.add(logIn,con);
+		panel.add(login,con);
 		
 		//add action listener to the button
-		logIn.addActionListener(this);
+		login.addActionListener(this);
 		
 		// add he button to the panel
 		cPane.add(panel);
@@ -206,16 +223,6 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 		
 		//add listener
 		saveFile.addActionListener(this);
-		
-	/*	//create an item in JMenu
-		JMenuItem recordsItem = new JMenuItem("Records");
-		
-		//add item to the menu
-		file.add(recordsItem);	
-		
-		//add action listener
-		recordsItem.addActionListener(this);
-		*/
 		
 		//create an item in the JMenu
 		JMenuItem loadFile = new JMenuItem("Load");
@@ -325,13 +332,25 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 			load();	
 			guestList();
 		}	
+		
+		String user = username.getText();
 			
-	/*	if(username.getText().equals("staff.getStaffId()")&&password.getText().equals("staff.getPassword()")&&e.getActionCommand().equals("Log In"))
+	
+	/*	if(e.getActionCommand().equals("Log In") && username.getText().equals("staff.getStaffId()") && password.getText().equals("staff.getPassword()"))
 			{
 				menubar.setVisible(true);
 				panel.setVisible(false);
+				System.out.println("hi");
+			}*/
+		if(e.getActionCommand().equals("Log In"))
+			{
+				System.out.println(user);
+				
+			//	JOptionPane.showMessageDialog(username.getText().toString());
+			//	JOptionPane.showMessageDialog(null,"Invalid!, please try again"+username.getText()+"+password.getText()+");
 			}
-	*/	
+			
+		
 		if(e.getActionCommand().equals("New Guest"))
 		{
 			guest.setForename(JOptionPane.showInputDialog("Please enter the forename:"));
@@ -347,11 +366,30 @@ public class HotelSystemDriver extends JFrame implements ActionListener
 			load();
 			guestList();
 		}
+		
+		if(password.getText() == "hi")
+		{
+			System.out.println("sd");
+		}
 	
+		/*
+		DocumentListener documentListener = new DocumentListener() {
+			
+			public void changedUpdate(DocumentEvent documentEvent) {
+		        if(username.getText() == staff.getStaffId())
+		        	System.out.println("yes");
+		      }
+		    public void insertUpdate(DocumentEvent documentEvent) {
+		    //    printIt(documentEvent);
+		      }
+		    public void removeUpdate(DocumentEvent documentEvent) {
+		     //   printIt(documentEvent);
+		      }				
+		};
+	*/
 	}
 	
 
-	//end actionPerformed
 	
 } //end class
 
